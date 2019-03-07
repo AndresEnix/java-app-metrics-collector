@@ -34,16 +34,16 @@ To install a local java-app-metrics-collector you must perform the following ste
 
 #### Mandatory Environment Variables
 
-* CustomerSegment: The customer segment is used as the spring profile, this parameter indicates which file will load the application in order to register metrics.  
+* metric_collector_profile: The customer segment is used as the spring profile, this parameter indicates which file will load the application in order to register metrics.  
 * metric_collector_blacklist: The list of application names that are going to be disabled and will not log data. 
 
     \* In the case that this parameter is empty all of the services declared in ```Application.yml``` will log data.
-* DB_TYPE: The database type is used as the spring profile. this parameter indicated which database datasource will be instantiated by spring.
-* ClusterDBURL: Database string connection.
-* DBPort: Database port.
-* DBName: Database name.
-* AWS_REGION & CSS_DB_SECRET: If both parameters are provided the application will retrieve the database username and password from the AWS secret manager service.
-* CSS_DB_USER: CSS database user name.
+* jdbc_url: Database string connection.
+* db_port: Database port.
+* db_name: Database name.
+* db_user: database user name.
+* db_password: database password.
+* db_max_pool_size: max number of connections.
 
 #### Configuration files
 
