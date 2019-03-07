@@ -1,0 +1,42 @@
+spring:
+  profiles:
+    active: ${metric_collector_profile}
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
+    username: sa
+    password: sa
+    hikari:
+      connectionTimeout: 30000
+      idleTimeout: 600000
+      maxLifetime: 1800000
+      maximum-pool-size: ${db_max_pool_size}
+
+collector:
+  services:
+    - name: white_list_service
+      threads: 1
+      metrics:
+        - name: five-seconds-period
+          type: DATABASE
+          enabled: true
+          query-timeout: 1
+          query-max-rows: 1
+          cron-tab: "*/5 * * * * ?"
+          statement: generic-query.sql
+          parameters:
+            - name: status
+              value: PROCESSED
+    - name: black_list_service
+      threads: 1
+      metrics:
+        - name: five-seconds-period
+          type: DATABASE
+          enabled: true
+          query-timeout: 1
+          query-max-rows: 1
+          cron-tab: "*/5 * * * * ?"
+          statement: generic-query.sql
+          parameters:
+            - name: status
+              value: PROCESSED

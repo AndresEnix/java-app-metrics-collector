@@ -1,0 +1,1 @@
+SELECT count(*) AS events FROM dummy_table WHERE status=?
